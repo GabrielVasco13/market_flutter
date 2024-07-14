@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopping_application/model/games.dart';
 import 'package:shopping_application/repository/gamesRepository.dart';
+import 'package:shopping_application/views/controller.dart';
 import 'package:shopping_application/views/widgets/drawerBar.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,6 +10,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartController = Provider.of<Controller>(context);
+    List<Games> gameList = Gamesrepository().fetchGames();
+
     final games = Gamesrepository();
     return Scaffold(
       appBar: AppBar(
@@ -23,7 +29,9 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      endDrawer: const Drawerbar(),
+      endDrawer: Drawerbar(
+        cartController: cartController,
+      ),
       body: Column(
         children: [
           Expanded(
@@ -32,7 +40,7 @@ class HomePage extends StatelessWidget {
               childAspectRatio: (1 / 1.2),
               shrinkWrap: true,
               children: [
-                for (var game in games.games)
+                for (var game in gameList)
                   Card(
                     child: Column(
                       children: [
@@ -51,7 +59,10 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Provider.of<Controller>(context, listen: false)
+                                .addGame(game);
+                          },
                           child: const Text("Buy now"),
                         ),
                       ],
