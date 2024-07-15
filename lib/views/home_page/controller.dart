@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shopping_application/interface/i_controller.dart';
-import 'package:shopping_application/model/cart_model.dart';
+import 'package:shopping_application/model/cart_item_model.dart';
 import 'package:shopping_application/model/games.dart';
 
-class Controller extends ChangeNotifier implements Icontroller {
-  final List<cartItem> _cart = [];
+class Controller extends ChangeNotifier implements IController {
+  final List<CartItemModel> _cart = [];
 
-  List<cartItem> get cartRead => _cart;
+  List<CartItemModel> get cartRead => _cart;
 
   @override
   void addGame(Games game) {
@@ -14,22 +14,25 @@ class Controller extends ChangeNotifier implements Icontroller {
     if (index != -1) {
       _cart[index].quantity++;
     } else {
-      _cart.add(cartItem(game, 1));
+      _cart.add(
+        CartItemModel(game: game, quantity: 1),
+      );
     }
     notifyListeners();
   }
 
   @override
   void changeGame(int id, int quantity) {
-    cartItem? existingItem = _cart.firstWhere((cart) => cart.game.id == id);
-    if (existingItem != null) {
+    CartItemModel? existingItem =
+        _cart.firstWhere((cart) => cart.game.id == id);
+    if (existingItem.quantity != 0) {
       existingItem.quantity = quantity;
       notifyListeners();
     }
   }
 
   @override
-  void removeGame(cartItem cart) {
+  void removeGame(CartItemModel cart) {
     int index = _cart.indexOf(cart);
     if (index != -1) {
       _cart.removeAt(index);

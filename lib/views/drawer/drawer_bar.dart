@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_application/components/icon_text.dart';
-import 'package:shopping_application/model/cart_model.dart';
 import 'package:shopping_application/repository/games_repository.dart';
-import 'package:shopping_application/views/drawer/drawer_controller.dart';
+import 'package:shopping_application/views/widget/quantity_input_widget.dart';
 import 'package:shopping_application/views/home_page/controller.dart';
 
-class Drawerbar extends StatefulWidget {
+class DrawerBar extends StatefulWidget {
   final Controller cartController;
 
-  const Drawerbar({
+  const DrawerBar({
     super.key,
     required this.cartController,
   });
 
   @override
-  State<Drawerbar> createState() => _DrawerbarState();
+  State<DrawerBar> createState() => _DrawerBarState();
 }
 
-class _DrawerbarState extends State<Drawerbar> {
+class _DrawerBarState extends State<DrawerBar> {
+  final GamesRepository gamesRepository = GamesRepository();
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -35,7 +36,7 @@ class _DrawerbarState extends State<Drawerbar> {
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                   const SizedBox(width: 80),
-                  const Icontext()
+                  const IconText()
                 ],
               ),
             ),
@@ -51,7 +52,7 @@ class _DrawerbarState extends State<Drawerbar> {
                       child: Row(
                         children: [
                           Image.asset(
-                            Gamesrepository()
+                            gamesRepository
                                 .fetchGames()
                                 .firstWhere(
                                     (element) => element.id == item.game.id)
@@ -65,7 +66,7 @@ class _DrawerbarState extends State<Drawerbar> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                Gamesrepository()
+                                gamesRepository
                                     .fetchGames()
                                     .firstWhere(
                                         (element) => element.id == item.game.id)

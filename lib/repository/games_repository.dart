@@ -1,6 +1,6 @@
 import 'package:shopping_application/model/games.dart';
 
-class Gamesrepository {
+class GamesRepository {
   List<Games> fetchGames() {
     return [
       Games(

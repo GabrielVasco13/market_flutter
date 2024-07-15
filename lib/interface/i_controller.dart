@@ -1,10 +1,10 @@
-import 'package:shopping_application/model/cart_model.dart';
+import 'package:shopping_application/model/cart_item_model.dart';
 import 'package:shopping_application/model/games.dart';
 
-abstract class Icontroller {
+abstract class IController {
   void addGame(Games game);
 
-  void removeGame(cartItem cart);
+  void removeGame(CartItemModel cart);
 
   void changeGame(int id, int quantity);
 

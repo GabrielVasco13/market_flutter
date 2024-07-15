@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_application/model/cart_model.dart';
+import 'package:shopping_application/model/cart_item_model.dart';
 import 'package:shopping_application/views/home_page/controller.dart';
 
 class QuantityInputWidget extends StatefulWidget {
-  final cartItem item;
+  final CartItemModel item;
   final Controller cartController;
 
-  const QuantityInputWidget(
-      {Key? key, required this.item, required this.cartController})
-      : super(key: key);
+  const QuantityInputWidget({
+    super.key,
+    required this.item,
+    required this.cartController,
+  });
 
   @override
-  _QuantityInputWidgetState createState() => _QuantityInputWidgetState();
+  State<QuantityInputWidget> createState() => _QuantityInputWidgetState();
 }
 
 class _QuantityInputWidgetState extends State<QuantityInputWidget> {

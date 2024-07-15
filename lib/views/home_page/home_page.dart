@@ -12,9 +12,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartController = Provider.of<Controller>(context);
-    List<Games> gameList = Gamesrepository().fetchGames();
+    List<Games> gameList = GamesRepository().fetchGames();
 
-    final games = Gamesrepository();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Xurxo Dev'),
@@ -30,7 +29,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      endDrawer: Drawerbar(
+      endDrawer: DrawerBar(
         cartController: cartController,
       ),
       body: Column(
