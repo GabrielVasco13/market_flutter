@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_application/model/games.dart';
-import 'package:shopping_application/repository/gamesRepository.dart';
-import 'package:shopping_application/views/controller.dart';
-import 'package:shopping_application/views/widgets/drawerBar.dart';
+import 'package:shopping_application/repository/games_repository.dart';
+import 'package:shopping_application/views/home_page/controller.dart';
+
+import '../drawer/drawer_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
